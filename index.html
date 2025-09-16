@@ -12,6 +12,11 @@
             margin: 0;
             padding: 10px;
             font-size: 14px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        body.white-theme {
+            background-color: #fff;
+            color: #000;
         }
         .container {
             max-width: 400px;
@@ -117,6 +122,64 @@
         .modal-content button.cancel {
             background-color: #ff0000;
             margin-left: 10px;
+        }
+        .theme-toggle {
+            margin-top: 10px;
+            text-align: center;
+        }
+        .theme-toggle button {
+            padding: 5px 10px;
+            background-color: #333;
+            border: none;
+            color: #fff;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        /* White Theme Adjustments */
+        body.white-theme {
+            background-color: #fff;
+            color: #000;
+        }
+        body.white-theme .header {
+            border-bottom: 1px solid #ccc;
+        }
+        body.white-theme .transaction {
+            border-bottom: 1px solid #ccc;
+        }
+        body.white-theme .filters {
+            color: #666;
+        }
+        body.white-theme .transaction .details {
+            color: #666;
+        }
+        body.white-theme .transaction .details div:first-child {
+            color: #000; /* Subheadings change to black */
+        }
+        body.white-theme .transaction .balance {
+            color: #666;
+        }
+        body.white-theme .transaction .balance span.value {
+            color: #000; /* Balance figures change to black */
+        }
+        body.white-theme .modal-content {
+            background-color: #f0f0f0;
+            color: #000;
+        }
+        body.white-theme .modal-content input, body.white-theme .modal-content select {
+            background-color: #ddd;
+            color: #000;
+        }
+        body.white-theme .modal-content button {
+            background-color: #00cc00;
+            color: #fff;
+        }
+        body.white-theme .modal-content button.cancel {
+            background-color: #ff0000;
+            color: #fff;
+        }
+        body.white-theme .theme-toggle button {
+            background-color: #666;
+            color: #fff;
         }
     </style>
 </head>
@@ -231,6 +294,9 @@
                 <div class="balance">Balance: <span class="value">0.00044119</span></div>
             </div>
         </div>
+        <div class="theme-toggle">
+            <button onclick="toggleTheme()">Toggle Theme (Black/White)</button>
+        </div>
     </div>
 
     <div id="editModal" class="modal">
@@ -252,6 +318,7 @@
 
     <script>
         let currentIndex = -1;
+        let isWhiteTheme = false;
 
         function openEditModal(transactionElement, index) {
             currentIndex = index;
@@ -299,6 +366,11 @@
             }
 
             closeModal();
+        }
+
+        function toggleTheme() {
+            isWhiteTheme = !isWhiteTheme;
+            document.body.classList.toggle('white-theme', isWhiteTheme);
         }
     </script>
 </body>
